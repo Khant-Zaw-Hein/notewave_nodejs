@@ -1,17 +1,18 @@
+require('dotenv').config(); // Load environment variables from .env
 
 const config = {
-    user :'sa',
-    password :'localadmin',
-    server:'DESKTOP-KQH5GKT',
-    // server:'15.0.2000.5',
-    database:'Todo',
-    options:{
-        trustedconnection: true,
-        enableArithAbort : true, 
-        instancename :'SQLEXPRESS',
-        trustServerCertificate: true
-    },
-    port : 1433
-}
-
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  server: process.env.DB_SERVER,
+  database: process.env.DB_NAME,
+  options: {
+    trustedconnection: process.env.DB_TRUSTED_CONNECTION === 'true',
+    enableArithAbort: process.env.DB_ENABLE_ARITH_ABORT === 'true',
+    instancename: process.env.DB_INSTANCE_NAME,
+    trustServerCertificate: process.env.DB_TRUST_SERVER_CERTIFICATE === 'true'
+  },
+  port: parseInt(process.env.DB_PORT)
+};
 module.exports = config; 
+
+
